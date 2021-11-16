@@ -22,6 +22,7 @@
     },
     "keywords": [
         "node",
+        "hyperdev",
         "mongoose",
         "express"
     ],
