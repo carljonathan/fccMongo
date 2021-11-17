@@ -10,8 +10,8 @@
         "body-parser": "^1.15.2",
         "dotenv": "^8.2.0",
         "express": "^4.17.1",
-        "mongoose": "^5.1.6",
-        "mongodb": "^3.0.10"
+        "mongodb": "^3.7.3",
+        "mongoose": "^5.13.13"
     },
     "repository": {
         "type": "git",
