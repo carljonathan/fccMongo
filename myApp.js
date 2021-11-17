@@ -2,7 +2,7 @@ require('dotenv').config();
 require('express')
 
 const mongoose = require('mongoose')
-console.log(mongoose.connect(process.env.MONGO_URI))
+mongoose.connect(process.env.MONGO_URI)
 
 
 let Person;
