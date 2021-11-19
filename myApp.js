@@ -5,17 +5,28 @@ const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGO_URI)
 const Schema = mongoose.Schema
 
+// create mongoose schema for Person
 const personSchema = new Schema({
   name: { type: String, required: true },
   age: Number,
   favoriteFoods: [String]
 })
 
-const Person = mongoose.model('Person', personSchema);
+// create mongoose model for PersonSchema
+const Person = mongoose.model('Person', personSchema)
 
-const createAndSavePerson = (done) => {
-  done(null /*, data*/);
-};
+// create new Person document function. async to accept await
+const createAndSavePerson = async (done) => {
+  // create new person Document from Person schema
+  const person = new Person({ name: 'John', age: 32, favoriteFoods: ['fruit', 'veggies', 'eggs'] })
+
+  // await document to be ready, then save as per node convention
+  await person.save((err, data) => {
+    // if error, log it. Else return done
+    if (err) return console.error(err)
+    done(null, data)
+  })
+}
 
 const createManyPeople = (arrayOfPeople, done) => {
   done(null /*, data*/);
