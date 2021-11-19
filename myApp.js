@@ -3,9 +3,15 @@ require('express')
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGO_URI)
+const Scema = mongoose.scema
 
+const personScema = new Scema({
+  name: { type: String, required: true },
+  age: Number,
+  favoriteFoods: [String]
+})
 
-let Person;
+let Person = mongoose.model('Person', personScema);
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
