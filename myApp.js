@@ -28,8 +28,13 @@ const createAndSavePerson = async (done) => {
   })
 }
 
-const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+// function to create multiple Person documents. async to handle await
+const createManyPeople = async (arrayOfPeople, done) => {
+  // use model.create shorthand that takes array of object as argument. Automatically calls model.save() so second arg is error handling 
+  await Person.create(arrayOfPeople, (err, data) => {
+    if (err) return console.error(err)
+    done(null, data)
+  })
 };
 
 const findPeopleByName = (personName, done) => {
