@@ -35,11 +35,16 @@ const createManyPeople = async (arrayOfPeople, done) => {
     if (err) return console.error(err)
     done(null, data)
   })
-};
+}
 
-const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
-};
+// function to handle search by Model.find(). async to handle await
+const findPeopleByName = async (personName, done) => {
+  // use Model.find to find persons with name in personName. function takes filter object, some additional optional params and can handle callback for eg. err handling.
+  await Person.find(personName, (err, data) => {
+    if (err) return console.error(err)
+    done(null, data)
+  })
+}
 
 const findOneByFood = (food, done) => {
   done(null /*, data*/);
