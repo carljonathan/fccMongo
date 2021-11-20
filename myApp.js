@@ -61,11 +61,22 @@ const findPersonById = async (personId, done) => {
   })
 }
 
-const findEditThenSave = (personId, done) => {
+// function to find, edit, update and save updated model.
+const findEditThenSave = async (personId, done) => {
+  // var to update
   const foodToAdd = "hamburger";
-
-  done(null /*, data*/);
-};
+  // find Model by id. Id passed to main func
+  await Person.findById(personId, (err, data) => {
+    if (err) return console.error(err)
+    // data = returned query. update document field with created var
+    data.favoriteFoods.push(foodToAdd)
+    // save the updated Model document and call done function
+    data.save((err, update) => {
+      if (err) return console.error(err)
+      done(null, update)
+    })
+  })
+}
 
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
