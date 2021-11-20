@@ -106,11 +106,15 @@ const removeManyPeople = async (done) => {
   })
 }
 
-const queryChain = (done) => {
+// function to chain queries
+const queryChain = async (done) => {
   const foodToSearch = "burrito";
-
-  done(null /*, data*/);
-};
+  // query docs by food, sort ascending by name, limit to 2 docs, hide age then execute
+  await Person.find({ favoriteFoods: foodToSearch }).sort({ name: 1 }).limit(2).select({ age: 0 }).exec((err, result) => {
+    if (err) return console.error(err)
+    done(null, result)
+  })
+}
 
 /** **Well Done !!**
 /* You completed these challenges, let's go celebrate !
