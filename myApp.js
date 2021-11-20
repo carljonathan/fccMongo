@@ -48,7 +48,7 @@ const findPeopleByName = async (personName, done) => {
 
 // function to handle Model.findOne, which works like Model.find but only returns one hit instead of array of hits. If multiple matches it returns the first.
 const findOneByFood = async (food, done) => {
-  await Person.findOne({ favoriteFood: food }, (err, data) => {
+  await Person.findOne({ favoriteFoods: food }, (err, data) => {
     if (err) return console.error(err)
     done(null, data)
   })
