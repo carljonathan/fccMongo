@@ -78,26 +78,33 @@ const findEditThenSave = async (personId, done) => {
   })
 }
 
+// function to update one document by name and setting age to 20
 const findAndUpdate = async (personName, done) => {
   const ageToSet = 20
+  // find one by name and update age to 20. new: true to return the updated doc. new: fale will return original doc.
   await Person.findOneAndUpdate({ name: personName }, { age: ageToSet }, { new: true }, (err, data) => {
     if (err) return console.error(err)
     done(null, data)
   })
 }
 
+// function to find a doc by ID and ramove it
 const removeById = async (personId, done) => {
+  // find by id and remove
   await Person.findByIdAndRemove(personId, (err, removedDoc) => {
     if (err) return console.error(err)
     done(null, removedDoc)
   })
 }
 
-const removeManyPeople = (done) => {
+// function to find all the Person documents that match "Mary" as name and remove them
+const removeManyPeople = async (done) => {
   const nameToRemove = "Mary";
-
-  done(null /*, data*/);
-};
+  await Person.remove({ name: nameToRemove }, (err, response) => {
+    if (err) return console.error(err)
+    done(null, response)
+  })
+}
 
 const queryChain = (done) => {
   const foodToSearch = "burrito";
